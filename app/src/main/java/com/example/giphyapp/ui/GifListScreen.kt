@@ -12,11 +12,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.example.giphyapp.data.GifData
 import com.example.giphyapp.data.GifRepository
 
 
 @Composable
-fun GifListScreen(viewModel: GifListViewModel = viewModel()) {
+fun GifListScreen(
+    onClick: (GifData) -> Unit,
+    viewModel: GifListViewModel = viewModel()
+) {
     val gifs by viewModel.gifs.collectAsStateWithLifecycle()
     val isLoading by viewModel.isLoading.collectAsStateWithLifecycle()
     val error by viewModel.error.collectAsStateWithLifecycle()
@@ -71,8 +75,7 @@ fun GifListScreen(viewModel: GifListViewModel = viewModel()) {
                         GifCard(
                             gif = gif,
                             index = index + 1,
-                            onClick = {
-                            }
+                            onClick = {gif -> onClick(gif)}
                         )
                     }
                 }

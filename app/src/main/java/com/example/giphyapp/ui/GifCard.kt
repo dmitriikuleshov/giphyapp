@@ -1,5 +1,6 @@
 package com.example.giphyapp.ui
 
+import android.R.attr.onClick
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.Card
@@ -22,7 +23,7 @@ import com.example.giphyapp.data.GifData
 fun GifCard(
     gif: GifData,
     index: Int,
-    onClick: () -> Unit,
+    onClick: (GifData) -> Unit,
     modifier: Modifier = Modifier
 ) {
     // pinterest стиль случайная высота
@@ -32,7 +33,7 @@ fun GifCard(
         modifier = modifier
             .fillMaxWidth()
             .height(randomHeight)
-            .clickable { onClick() },
+            .clickable { onClick(gif) },
         elevation = CardDefaults.cardElevation(defaultElevation = 8.dp)
     ) {
         Column {
