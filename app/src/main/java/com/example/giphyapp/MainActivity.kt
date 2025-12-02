@@ -24,7 +24,8 @@ class MainActivity : ComponentActivity() {
                 ) {
                     GifListScreen (
                         onClick = {gif ->
-                            val intent = Intent(this, GifActivity::class)
+                            val intent = Intent(this, GifActivity::class.java)
+                                .putExtra("gif_url", gif.images.original.url)
                         }
                     )
                 }
